@@ -43,7 +43,11 @@ transforms = Compose(
         LoadImaged(keys=["image", "label"]),
         EnsureChannelFirstD(keys=["image", "label"]),
         ScaleIntensityD(keys=["image"]),
-        ResizeD(keys=["image", "label"], spatial_size=(256, 256)),
+        ResizeD(
+            keys=["image", "label"],
+            spatial_size=(256, 256),
+            mode=("area", "nearest"),
+        ),
         ToTensorD(keys=["image", "label"]),
     ]
 )
